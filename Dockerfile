@@ -1,6 +1,6 @@
 # Use Maven with JDK 22
 FROM maven:3.8.5-openjdk-22 AS build
-COPY . .
+COPY User .
 RUN mvn clean package -DskipTests
 
 # Use OpenJDK 22 to run the application
