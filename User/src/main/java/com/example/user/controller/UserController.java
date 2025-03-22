@@ -1,35 +1,46 @@
 package com.example.user.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import com.example.user.entity.User;
 import java.util.List;
+
 import com.example.user.service.UserServiceImpl;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
-@RequestMapping("/user")
 public class UserController {
 
     @Autowired
     UserServiceImpl userServiceImpl;
 
-    @PostMapping("/create")
+    @PostMapping(value = "/user/create")
     public User createUser(@RequestBody User user) {
         return userServiceImpl.createUser(user);
     }
 
-    @PutMapping("/update")
-    public String updateUser(@RequestBody User user) {
-        return userServiceImpl.updateUser(user);
+    @PutMapping(value = "/user/update")
+    public String updateUser()
+    {
+        return userServiceImpl.updateUser(null);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public String deleteUser(@PathVariable int id) {
-        return userServiceImpl.deleteUser(id);
+    @DeleteMapping(value = "/user/delete")
+    public String deleteUser()
+    {
+        return userServiceImpl.deleteUser(12);
     }
 
-    @GetMapping("/details")
-    public List<User> getUser() {
+    @GetMapping(value = "/user/details")
+    public List<User> getUser()
+    {
+
         return userServiceImpl.getUser();
     }
+
 }
